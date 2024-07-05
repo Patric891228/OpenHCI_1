@@ -1,0 +1,73 @@
+{
+    "name": "XRInputActions",
+    "maps": [
+        {
+            "name": "XRI LeftHand",
+            "id": "a493228b-2d41-4c45-ad46-263346985ead",
+            "actions": [
+                {
+                    "name": "Left_Select",
+                    "type": "Button",
+                    "id": "e2b28c5c-2b6b-45c9-b98a-669880f1a345",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6f2d78be-1e95-451c-8708-0252f9576d37",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left_Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35e43566-b3f5-47ef-bf74-d43cdc09a838",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left_Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "XRI RightHand",
+            "id": "49a7e9f5-6a05-46db-9989-8cf5de235832",
+            "actions": [
+                {
+                    "name": "Right_Select",
+                    "type": "Button",
+                    "id": "ca7d84ae-6f77-42de-a2a3-b4c116fb6441",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a80c513-7795-436e-a704-c5ae6fd37410",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right_Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
