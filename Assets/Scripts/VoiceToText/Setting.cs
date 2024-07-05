@@ -11,8 +11,6 @@ namespace VoiceProcessing
         [SerializeField] private InputField numberInputField;
         [SerializeField] private Text displayText;
 
-        private int duration = 5;
-
         private void Start()
         {
             #if UNITY_WEBGL && !UNITY_EDITOR
