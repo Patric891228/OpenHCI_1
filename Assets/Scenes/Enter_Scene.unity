@@ -1726,7 +1726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110044896}
   m_Layer: 0
-  m_Name: ' '
+  m_Name: Stair_Classroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
