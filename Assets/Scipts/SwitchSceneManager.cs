@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Management;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
 
 public class SwitchSceneManager : MonoBehaviour
@@ -10,13 +11,34 @@ public class SwitchSceneManager : MonoBehaviour
 
     private void Start()
     {
-        // Debug.Log("SwitchSceneManager script attached and running.\n Target scene: " + sceneName);
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectEntered.AddListener(OnSelectEnter);
+        }
     }
+    void OnDestroy()
+    {
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectEntered.RemoveListener(OnSelectEnter);
+        }
+    }
+
+    void OnSelectEnter(SelectEnterEventArgs args)
+    {
+        Debug.Log("Button clicked, attempting to switch to scene: " + sceneName);
+        SceneManager.LoadScene(sceneName);
+    }
+
     
+
+    // 2D UI interaction
     public void SceneSwitchTo()
     {
         Debug.Log("Button clicked, attempting to switch to scene: " + sceneName);
-        // Debug.Log("Switching to scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
 }
