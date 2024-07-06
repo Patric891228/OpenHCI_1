@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PopupCanvaManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject popupCanvas;
+
+    public void ShowPopupCanvas()
     {
-        
+        Debug.Log("Open Popup Canvas");
+        popupCanvas.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClosePopupCanvas()
     {
-        
+        Debug.Log("Close Popup Canvas");
+        popupCanvas.SetActive(false);
     }
 }
