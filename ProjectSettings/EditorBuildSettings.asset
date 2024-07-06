@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SituatonChoose_Scene.unity
     guid: 93797662beae99845861f7f829d7aee0
   - enabled: 1
-    path: Assets/Scenes/InterviewIntro_Scene.unity
-    guid: 4d449810b1597de458b85836c4d823a7
-  - enabled: 1
-    path: Assets/Scenes/ReportIntro_Scene.unity
-    guid: 4c462e3852581dc4495700e74f98b5fd
-  - enabled: 1
     path: Assets/Scenes/SceneCreation_Scene1.unity
     guid: 5cd8f48033961d04c82631088f09f9a3
   - enabled: 1
