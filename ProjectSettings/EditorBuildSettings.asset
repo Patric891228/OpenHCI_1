@@ -6,14 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes_For_Test/Enter_Scene.unity
-    guid: 72e8482d0418b934db10df500f26d8b9
-  - enabled: 1
-    path: Assets/Scenes_For_Test/Main_Scene_test.unity
-    guid: f44602527bc841c4883638c6e7a43896
-  - enabled: 1
-    path: Assets/Scenes/Main_Scene.unity
-    guid: b941775c70c1b5848b178318961622cb
+    path: Assets/Scenes/Enter_Scene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/SituatonChoose_Scene.unity
     guid: 93797662beae99845861f7f829d7aee0
@@ -26,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneCreation_Scene1.unity
     guid: 5cd8f48033961d04c82631088f09f9a3
+  - enabled: 1
+    path: Assets/Scenes/SceneCreation_Scene2.unity
+    guid: 78e5fde38675aa942a634f52f6c2923f
+  - enabled: 1
+    path: Assets/Scenes/SceneCreation_Scene3.unity
+    guid: e5b7879026392bd448425f7418f00026
   - enabled: 1
     path: Assets/Scenes/Simluation_Scene.unity
     guid: a23745057bec2c649b3d44687ea4e604

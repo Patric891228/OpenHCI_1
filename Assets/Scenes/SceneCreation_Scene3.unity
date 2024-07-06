@@ -8097,7 +8097,6 @@ GameObject:
   - component: {fileID: 486744532}
   - component: {fileID: 486744531}
   - component: {fileID: 486744530}
-  - component: {fileID: 486744534}
   m_Layer: 5
   m_Name: Enter_btn
   m_TagString: Untagged
@@ -8114,15 +8113,15 @@ RectTransform:
   m_GameObject: {fileID: 486744528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1895685829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 314, y: -311.86096}
-  m_SizeDelta: {x: 201.7307, y: 60.5192}
+  m_AnchoredPosition: {x: 361.8, y: -355.8}
+  m_SizeDelta: {x: 80, y: 24}
   m_Pivot: {x: 3.5595605, y: -10.594549}
 --- !u!114 &486744530
 MonoBehaviour:
@@ -8231,19 +8230,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486744528}
   m_CullTransparentMesh: 1
---- !u!114 &486744534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486744528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f08d54e2db9ba42b8f73dea4f458ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: 
 --- !u!1001 &491665260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13246,7 +13232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f08d54e2db9ba42b8f73dea4f458ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SceneCreation_Scene2
+  sceneName: SceneCreation_Scene3
 --- !u!114 &776578836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13269,8 +13255,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+    m_PressedColor: {r: 0.26666668, g: 0.26666668, b: 0.26666668, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
