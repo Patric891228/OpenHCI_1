@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class ChatManager : MonoBehaviour
 {
     public Button recordButton;
-    public Text stateText;
     private LLM LLM;
     private STTManager sttManager;
     private TTSManager ttsManager;
@@ -31,7 +30,6 @@ public class ChatManager : MonoBehaviour
 
         SetPlayerState(State.Reporting);
         sttManager.SetRecordTime(10);
-        UpdateStateText();
         StartRecording();
         recordButton.onClick.AddListener(OnButtonClick);
 
@@ -94,7 +92,6 @@ public class ChatManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        UpdateStateText(); // 更新状态文本
     }
 
     private void SynthesizeAndPlay(string text)
@@ -115,11 +112,6 @@ public class ChatManager : MonoBehaviour
         return (State)System.Enum.Parse(typeof(State), stateString); // 使用 System.Enum.Parse
     }
 
-    private void UpdateStateText()
-    {
-        stateText.text = "Current State: " + currentState.ToString() + sttManager.duration;
-    }
-
     void OnButtonClick()
     {
         Debug.Log("Click Button!");
@@ -127,7 +119,6 @@ public class ChatManager : MonoBehaviour
         sttManager.EndRecording();
         sttManager.Transcript();
         Debug.Log(GetPlayerState());
-        UpdateStateText();
     }
 
     private IEnumerator Comment()
