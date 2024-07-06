@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ChatManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ChatManager : MonoBehaviour
     private LLM LLM;
     private STTManager sttManager;
     private TTSManager ttsManager;
+    private SwitchSceneManager SwitchSceneManager;
     private enum State { Reporting, QA, Commenting, End }
     private State currentState;
 
@@ -21,6 +23,8 @@ public class ChatManager : MonoBehaviour
     public RectTransform aiMessageTemplate;
 
     private List<RectTransform> messageInstances = new List<RectTransform>();
+    public Text countdownText; // 指向 CountdownText 的引用
+    public int countdownTime = 180; // 設置倒數時間
 
     void Start()
     {
@@ -29,14 +33,14 @@ public class ChatManager : MonoBehaviour
         LLM = FindObjectOfType<LLM>();
 
         SetPlayerState(State.Reporting);
-        sttManager.SetRecordTime(10);
+        sttManager.SetRecordTime(countdownTime);
         StartRecording();
         recordButton.onClick.AddListener(OnButtonClick);
 
         // 启动每0.1秒调用一次的协程
         userMessageTemplate.gameObject.SetActive(false);
         aiMessageTemplate.gameObject.SetActive(false);
-
+        StartCoroutine(StartCountdown());
         StartCoroutine(UpdateRoutine(0.1f));
     }
 
@@ -87,7 +91,9 @@ public class ChatManager : MonoBehaviour
                 StartCoroutine(Comment());
                 break;
             case State.End:
-                sttManager.isRecording = false;
+                // sttManager.isRecording = false;
+                sttManager.SetRecordTime(6);
+                SceneManager.LoadScene("Result_Scene"); // fix here
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -180,4 +186,31 @@ public class ChatManager : MonoBehaviour
         }
     }
 
+    private IEnumerator StartCountdown()
+    {
+        int currentTime = countdownTime;
+        int min,sec;
+
+        while (currentTime > 0)
+        {   
+            min = currentTime/60;
+            sec = currentTime%60;
+            if (sec < 10){
+                countdownText.text = min.ToString() + " : 0" + sec.ToString();
+            }else{
+                countdownText.text = min.ToString() + " : " + sec.ToString();
+            }
+            yield return new WaitForSeconds(1f);
+            currentTime--;
+        }
+
+        countdownText.text = "Time's Up!";
+        OnCountdownEnd();
+    }
+
+    private void OnCountdownEnd()
+    {
+        // 倒數結束時的處理
+        Debug.Log("Countdown ended!");
+    }
 }
