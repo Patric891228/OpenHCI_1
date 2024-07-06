@@ -23,23 +23,15 @@ namespace OpenAI
 
         private void Start()
         {
-            button.onClick.AddListener(SendReply);
-
-            Type type = typeof(OpenAIApi);
-            MethodInfo[] methods = type.GetMethods();
-
-            foreach (MethodInfo method in methods)
-            {
-                Debug.Log(method.Name);
-            }
+            button.onClick.AddListener(SendReply);            
         }
 
-        private void AppendMessage(ChatMessage message)
+        private void AppendMessage(string message,string role)
         {
             scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
 
-            var item = Instantiate(message.Role == "user" ? sent : received, scroll.content);
-            item.GetChild(0).GetChild(0).GetComponent<Text>().text = message.Content;
+            var item = Instantiate(role == "user" ? sent : received, scroll.content);
+            item.GetChild(0).GetChild(0).GetComponent<Text>().text = message;
             item.anchoredPosition = new Vector2(0, -height);
             LayoutRebuilder.ForceRebuildLayoutImmediate(item);
             height += item.sizeDelta.y;
@@ -55,7 +47,7 @@ namespace OpenAI
                 Content = inputField.text
             };
             
-            AppendMessage(newMessage);
+            AppendMessage(newMessage.Content,"user");
 
             if (messages.Count == 0) newMessage.Content = prompt + "\n" + inputField.text; 
             
@@ -78,7 +70,7 @@ namespace OpenAI
                 message.Content = message.Content.Trim();
                 
                 messages.Add(message);
-                AppendMessage(message);
+                AppendMessage(message.Content,"GPT");
             }
             else
             {

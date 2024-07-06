@@ -9,15 +9,21 @@ public class STTManager : MonoBehaviour
     private readonly string fileName = "output.wav";
     private string microphoneName;
     public float duration = 180;
+    private ChatManager chatManager;
     
     private AudioClip clip;
     public bool isRecording;
     private float time;
     private OpenAIApi openai = new OpenAIApi();
+    private string folderPath = Application.dataPath + "/Files";
+    private string filePath;
 
     private void Start()
     {
+        chatManager = FindObjectOfType<ChatManager>();
         microphoneName = PlayerPrefs.GetString("user-mic-duration");
+        filePath = Path.Combine(folderPath, "Transcript.txt");
+        DeleteFileAtStart();
     }
 
     public void SetRecordTime(int time)
@@ -58,7 +64,8 @@ public class STTManager : MonoBehaviour
             Language = "zh"
         };
         var res = await openai.CreateAudioTranscription(req);
-        
+        // chatManager.AppendMessage("user","你: "+res.Text);
+        WriteTextToFile(res.Text);
         SaveTranscriptionToFile("output.txt",res.Text);
     }
 
@@ -92,4 +99,46 @@ public class STTManager : MonoBehaviour
             }
         }
     }
+
+    public void WriteTextToFile(string text)
+    {
+        // 確保目錄存在，若不存在則創建
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // 使用 StreamWriter 的 Append 模式來寫入文字
+        using (StreamWriter sw = new StreamWriter(filePath, true))
+        {
+            sw.WriteLine(text);
+        }
+
+        Debug.Log("Text written to file: " + text);
+    }
+
+    void DeleteFileAtStart()
+    {
+        // 確保目錄存在
+        if (Directory.Exists(folderPath))
+        {
+            // 檢查檔案是否存在
+            if (File.Exists(filePath))
+            {
+                // 刪除檔案
+                File.Delete(filePath);
+                Debug.Log("File deleted at start: " + filePath);
+            }
+            else
+            {
+                Debug.Log("File not found: " + filePath);
+            }
+        }
+        else
+        {
+            Debug.Log("Directory not found: " + folderPath);
+        }
+    }
+
+
 }

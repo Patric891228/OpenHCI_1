@@ -8,7 +8,12 @@ public class TTSManager : MonoBehaviour
     [SerializeField] private TTSModel model = TTSModel.TTS_1;
     [SerializeField] private TTSVoice voice = TTSVoice.Alloy;
     [SerializeField, Range(0.25f, 4.0f)] private float speed = 1f;
+    private ChatManager chatManager;
     
+    private void Start(){
+        chatManager = FindObjectOfType<ChatManager>();
+    }
+
     private void OnEnable()
     {
         if (!openAIWrapper) this.openAIWrapper = FindObjectOfType<OpenAIWrapper>();
@@ -23,6 +28,7 @@ public class TTSManager : MonoBehaviour
         byte[] audioData = await openAIWrapper.RequestTextToSpeech(text, model, voice, speed);
         if (audioData != null)
         {
+            chatManager.AppendMessage("system", "觀眾： "+text);
             audioPlayer.ProcessAudioBytes(audioData);
             PlayerPrefs.SetFloat("play-time", audioData.Length/16000f);
         }
