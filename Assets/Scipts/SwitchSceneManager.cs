@@ -9,10 +9,17 @@ public class SwitchSceneManager : MonoBehaviour
 {
     public string sceneName;
 
-    // 2D UI interaction
+    // Triggered by button
     public void SceneSwitchTo()
     {
         Debug.Log("SceneSwitchTo: Button clicked, attempting to switch to scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
+    }
+    
+    // Triggered by animation
+    public void SceneSwitchToByAnimation(string scene)
+    {
+        Debug.Log("SceneSwitchTo: Button clicked, attempting to switch to scene: " + scene);
+        SceneManager.LoadScene(scene);
     }
 }

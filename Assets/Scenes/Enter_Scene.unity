@@ -26914,6 +26914,7 @@ GameObject:
   - component: {fileID: 1732722714}
   - component: {fileID: 1732722713}
   - component: {fileID: 1732722712}
+  - component: {fileID: 1732722715}
   m_Layer: 5
   m_Name: SettingButton
   m_TagString: Untagged
@@ -26983,7 +26984,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732722713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1732722715}
+        m_TargetAssemblyTypeName: SwitchSceneManager, Assembly-CSharp
+        m_MethodName: SceneSwitchTo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1732722713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27022,6 +27035,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732722710}
   m_CullTransparentMesh: 1
+--- !u!114 &1732722715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732722710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f08d54e2db9ba42b8f73dea4f458ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Setting_Scene
 --- !u!1001 &1734376312
 PrefabInstance:
   m_ObjectHideFlags: 0
