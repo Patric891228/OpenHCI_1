@@ -10490,7 +10490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f08d54e2db9ba42b8f73dea4f458ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 'Enter_Scene '
+  sceneName: Enter_Scene
 --- !u!114 &633238954
 MonoBehaviour:
   m_ObjectHideFlags: 0
