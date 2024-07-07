@@ -1641,8 +1641,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SwitchScene, Assembly-CSharp
+      - m_Target: {fileID: 32943757}
+        m_TargetAssemblyTypeName: SwitchSceneManager, Assembly-CSharp
         m_MethodName: SceneSwitchTo
         m_Mode: 1
         m_Arguments:
@@ -1700,10 +1700,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 32943751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1900a5222330d2145bdbf09f5a6b59fa, type: 3}
+  m_Script: {fileID: 11500000, guid: b8f08d54e2db9ba42b8f73dea4f458ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  sceneName: SceneCreation_Scene3
 --- !u!1 &43076736
 GameObject:
   m_ObjectHideFlags: 0
