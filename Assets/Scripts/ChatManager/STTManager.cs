@@ -29,7 +29,7 @@ public class STTManager : MonoBehaviour
     public void SetRecordTime(int time)
     {
         duration = time;
-        Debug.Log("set record time:" + duration);
+        // Debug.Log("set record time:" + duration);
     }
     
     public void StartRecording()
@@ -76,7 +76,7 @@ public class STTManager : MonoBehaviour
         try
         {
             File.WriteAllText(path, transcription);
-            Debug.Log("使用者：" + transcription);
+            // Debug.Log("使用者：" + transcription);
             // Debug.Log("Transcription saved to " + path);
         }
         catch (System.Exception e)
@@ -114,7 +114,7 @@ public class STTManager : MonoBehaviour
             sw.WriteLine(text);
         }
 
-        Debug.Log("Text written to file: " + text);
+        // Debug.Log("Text written to file: " + text);
     }
 
     void DeleteFileAtStart()
