@@ -51,11 +51,8 @@ public class ChatManager : MonoBehaviour
             if (!sttManager.isRecording)
             {
                 currentState = GetPlayerState();
-                if (currentState != State.End)
-                {
-                    HandleState(currentState);
-                    StartRecording();
-                }
+                HandleState(currentState);
+                StartRecording();
             }
             yield return new WaitForSeconds(interval); // 每0.1秒调用一次
         }
@@ -72,6 +69,7 @@ public class ChatManager : MonoBehaviour
         {
             case State.Reporting:
                 SetPlayerState(State.QA);
+                OnCountdownEnd();
                 sttManager.SetRecordTime(6);
                 break;
             case State.QA:
@@ -130,8 +128,7 @@ public class ChatManager : MonoBehaviour
 
     private IEnumerator Comment()
     {
-        // 假设循环10次，每次暂停1秒
-        for (int i = 0; i < LLM.feedbacks.Count; i++)
+        for (int i = 0; i < 1; i++)
         {
             SynthesizeAndPlay(LLM.feedbacks[i]);
             Debug.Log(PlayerPrefs.GetFloat("play-time") + 2f);
@@ -170,7 +167,6 @@ public class ChatManager : MonoBehaviour
 
     void RemoveOldMessages()
     {
-        // 删除最早添加的消息实例
         RectTransform oldMessage = messageInstances[0];
         messageInstances.RemoveAt(0);
         Destroy(oldMessage.gameObject);
@@ -211,7 +207,6 @@ public class ChatManager : MonoBehaviour
 
     private void OnCountdownEnd()
     {
-        // 倒數結束時的處理
-        Debug.Log("Countdown ended!");
+        countdownText.enabled = false;
     }
 }
