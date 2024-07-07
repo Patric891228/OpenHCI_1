@@ -93,6 +93,7 @@ public class ChatManager : MonoBehaviour
             case State.End:
                 // sttManager.isRecording = false;
                 sttManager.SetRecordTime(6);
+                Debug.Log("Transfer to End State");
                 SceneManager.LoadScene("Result_Scene"); // fix here
                 break;
             default:
