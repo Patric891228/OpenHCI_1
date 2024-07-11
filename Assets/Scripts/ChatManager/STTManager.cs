@@ -23,7 +23,7 @@ public class STTManager : MonoBehaviour
         chatManager = FindObjectOfType<ChatManager>();
         microphoneName = PlayerPrefs.GetString("user-mic-duration");
         filePath = Path.Combine(folderPath, "Transcript.txt");
-        DeleteFileAtStart();
+        // DeleteFileAtStart();
     }
 
     public void SetRecordTime(int time)
