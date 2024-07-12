@@ -21,6 +21,10 @@ public class ResultAnalysis : MonoBehaviour
     public Text clarityAnalysis;
     public Text completenessAnalysis;
     public Text accuracyAnalysis;
+    public Text structureAnalysisGrade;
+    public Text clarityAnalysisGrade;
+    public Text completenessAnalysisGrade;
+    public Text accuracyAnalysisGrade;
     private string response = "";
     void Start()
     {
@@ -75,10 +79,14 @@ public class ResultAnalysis : MonoBehaviour
             Debug.Log("Response: " + response);
 
             AnalysisResult result = ResultParser.Parse(response);
-            structureAnalysis.text = $"結構性：{result.StructureContent}\n分數：{result.StructureScore}";
-            clarityAnalysis.text = $"清晰性：{result.ClarityContent}\n分數：{result.ClarityScore}";
-            completenessAnalysis.text = $"完整性：{result.CompletenessContent}\n分數：{result.CompletenessScore}";
-            accuracyAnalysis.text = $"正確性：{result.AccuracyContent}\n分數：{result.AccuracyScore}";
+            structureAnalysis.text = $"結構性：{result.StructureContent}";
+            clarityAnalysis.text = $"清晰性：{result.ClarityContent}";
+            completenessAnalysis.text = $"完整性：{result.CompletenessContent}";
+            accuracyAnalysis.text = $"正確性：{result.AccuracyContent}";
+            structureAnalysisGrade.text = $"{result.StructureScore}";
+            clarityAnalysisGrade.text = $"{result.ClarityScore}";
+            completenessAnalysisGrade.text = $"{result.CompletenessScore}";
+            accuracyAnalysisGrade.text = $"{result.AccuracyScore}";
             Debug.Log("Structure: " + structureAnalysis.text);
             Debug.Log("Clarity: " + clarityAnalysis.text);
             Debug.Log("Completeness: " + completenessAnalysis.text);
