@@ -34,6 +34,7 @@ public class ChatManager : MonoBehaviour
 
         SetPlayerState(State.Reporting);
         sttManager.SetRecordTime(countdownTime);
+        sttManager.isPaused = false;
         StartRecording();
         recordButton.onClick.AddListener(OnButtonClick);
 
@@ -48,7 +49,7 @@ public class ChatManager : MonoBehaviour
     {
         while (true)
         {
-            if (!sttManager.isRecording)
+            if (!sttManager.isRecording && !sttManager.istranslating)
             {
                 currentState = GetPlayerState();
                 HandleState(currentState);
@@ -68,31 +69,35 @@ public class ChatManager : MonoBehaviour
         switch (state)
         {
             case State.Reporting:
+                Debug.Log("QA time");
                 SetPlayerState(State.QA);
                 OnCountdownEnd();
-                sttManager.SetRecordTime(6);
                 break;
             case State.QA:
+                Debug.Log("We have"+LLM.questions.Count+"questions.");
                 if (LLM.questions.Count == 0)
                 {
+                    Debug.Log("Comment time");
                     SetPlayerState(State.Commenting);
-                    sttManager.SetRecordTime(6);
                 }
                 else
                 {
+                    Debug.Log("QA time");
                     sttManager.SetRecordTime(180);
+                    LLM.PopFirst(LLM.questions);
                     SynthesizeAndPlay(LLM.PopFirst(LLM.questions));
                 }
                 break;
             case State.Commenting:
-                sttManager.SetRecordTime(180);
+                sttManager.SetRecordTime(1800);
                 StartCoroutine(Comment());
                 break;
             case State.End:
+                sttManager.isPaused = false;
                 // sttManager.isRecording = false;
-                sttManager.SetRecordTime(6);
+                sttManager.SetRecordTime(10);
                 Debug.Log("Transfer to End State");
-                SceneManager.LoadScene("Result_Scene"); // fix here
+                SceneManager.LoadScene("Result_Scene");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -122,8 +127,10 @@ public class ChatManager : MonoBehaviour
         Debug.Log("Click Button!");
         sttManager.isRecording = false;
         sttManager.EndRecording();
-        sttManager.Transcript();
-        Debug.Log(GetPlayerState());
+        OnCountdownEnd();
+        if (sttManager.isPaused != true){
+            sttManager.Transcript();
+        }
     }
 
     private IEnumerator Comment()
@@ -136,6 +143,7 @@ public class ChatManager : MonoBehaviour
         }
         SetPlayerState(State.End);
         Debug.Log("Time to end!");
+        sttManager.isPaused = true;
         sttManager.SetRecordTime(6);
     }
 
