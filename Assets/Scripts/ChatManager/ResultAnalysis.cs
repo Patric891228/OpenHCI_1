@@ -28,7 +28,7 @@ public class ResultAnalysis : MonoBehaviour
     private string response = "";
     void Start()
     {
-        string transcriptPath  = Application.dataPath + "/Files/transcripts.txt";
+        string transcriptPath  = Application.dataPath + "/Files/output.txt";
         string text = ReadContent(transcriptPath);
         Debug.Log("transcript: " + text);
         SendReply(prompt, text);
