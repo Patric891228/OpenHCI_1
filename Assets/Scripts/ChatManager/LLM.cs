@@ -28,7 +28,8 @@ public class LLM : MonoBehaviour
     {
         string filePath = Application.dataPath + "/Files/report.pdf";
         string text = ExtractTextFromPDF(filePath);
-        SendReply(prompt, text);
+        SendReply(prompt, "香港，位於中國南部，珠江口以東，是一個繁華的國際大都會。自1842年成為英國殖民地以來，香港迅速發展成為全球金融和貿易中心之一。1997年，香港回歸中國，成為特別行政區，享有“一國兩制”的高度自治。香港以其壯觀的天際線和深水港著稱。人口密集，多元文化交織，融合了東西方的獨特魅力。香港的經濟高度發達，擁有全球知名的股票市場和自由貿易政策。旅遊業也是重要支柱，維多利亞港、迪士尼樂園、太平山等景點吸引了無數遊客。這座城市還以美食聞名，擁有無數米其林餐廳和地道小吃。香港的公共交通系統便捷，地鐵、巴士和電車連接四通八達。香港還擁有一流的教育和醫療體系，居民生活品質高。這座城市無論在經濟、文化還是生活品質上，都具有獨特的魅力。");
+        // SendReply(prompt, text);
     }
 
     private async void SendReply(string prompt, string input)
@@ -63,7 +64,6 @@ public class LLM : MonoBehaviour
                 Debug.Log(message.Content);
 
                 questions = ExtractItems(message.Content, "問題：(.*?)回饋：");
-                Debug.Log(questions.Count);
                 questions.Add(humanproblems[UnityEngine.Random.Range(0, humanproblems.Length)]);
                 feedbacks = ExtractItems(message.Content, "回饋：(.*)");
                 WriteListToFile(Application.dataPath + "/Files/questions.txt", questions);
@@ -78,7 +78,7 @@ public class LLM : MonoBehaviour
         }
     }
 
-    private async void CreateResult()  // fix here
+    private async void CreateResult()
     {
         string finalPath = Application.dataPath + "/Files/Transcript.txt";
         string content = string.Empty;

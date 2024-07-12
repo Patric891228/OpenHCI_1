@@ -13,6 +13,8 @@ public class STTManager : MonoBehaviour
     
     private AudioClip clip;
     public bool isRecording;
+    public bool isPaused;
+    public bool istranslating;
     private float time;
     private OpenAIApi openai = new OpenAIApi();
     private string folderPath = Application.dataPath + "/Files";
@@ -48,8 +50,8 @@ public class STTManager : MonoBehaviour
 
     public async void Transcript()
     {
-        // message.text = "Transcripting...";
-        
+        istranslating = true;
+        SetRecordTime(180);
         #if !UNITY_WEBGL
         Microphone.End(null);
         #endif
@@ -64,9 +66,11 @@ public class STTManager : MonoBehaviour
             Language = "zh"
         };
         var res = await openai.CreateAudioTranscription(req);
-        // chatManager.AppendMessage("user","你: "+res.Text);
+        chatManager.AppendMessage("system", "你: "+res.Text);
+        Debug.Log("You said: " + res.Text);
         WriteTextToFile(res.Text);
         SaveTranscriptionToFile("output.txt",res.Text);
+        istranslating = false;
     }
 
     private void SaveTranscriptionToFile(string fileName,string transcription)
@@ -88,7 +92,7 @@ public class STTManager : MonoBehaviour
 
     private void Update()
     {
-        if (isRecording)
+        if (isRecording && !isPaused)
         {
             duration -= Time.deltaTime;                
             if (duration <= 0)
