@@ -25,7 +25,7 @@ public class STTManager : MonoBehaviour
         chatManager = FindObjectOfType<ChatManager>();
         microphoneName = PlayerPrefs.GetString("user-mic-duration");
         filePath = Path.Combine(folderPath, "Transcript.txt");
-        // DeleteFileAtStart();
+        DeleteFileAtStart();
     }
 
     public void SetRecordTime(int time)
@@ -50,8 +50,8 @@ public class STTManager : MonoBehaviour
 
     public async void Transcript()
     {
-        istranslating = true;
-        SetRecordTime(180);
+        // message.text = "Transcripting...";
+        Debug.Log("產生回應中");
         #if !UNITY_WEBGL
         Microphone.End(null);
         #endif
@@ -66,8 +66,7 @@ public class STTManager : MonoBehaviour
             Language = "zh"
         };
         var res = await openai.CreateAudioTranscription(req);
-        chatManager.AppendMessage("system", "你: "+res.Text);
-        Debug.Log("You said: " + res.Text);
+        // chatManager.AppendMessage("user","你: "+res.Text);
         WriteTextToFile(res.Text);
         SaveTranscriptionToFile("output.txt",res.Text);
         istranslating = false;
