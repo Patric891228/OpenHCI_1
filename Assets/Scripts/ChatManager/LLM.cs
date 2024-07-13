@@ -17,7 +17,7 @@ public class LLM : MonoBehaviour
     public List<string> questions = new List<string>();
     public List<string> feedbacks = new List<string>();
 
-    private string prompt = "你是一場報告的觀眾，請針對演講者說出的内容，提供我5個講稿没有提到且方向跟演講内容不同但觀眾可能會問的問題，并針對此講稿5份不同做出100字的回饋，關於内容是否切题，主題内容可以優化改進的地方。請你依照以下格式回答我，問題：1.<question>,2.<question>,3.<question>,4.<question>，回饋：1.<response>,2.<question>,3.<question>,4.<question>,5.<question>\n 請你把内容取代<question>,<response>，請在每個内容中間以空格為間隔。以下是演講逐字稿：";
+    private string prompt = "你是一場報告的觀眾，請針對演講者說出的内容，提供我4個一個不認識香港的觀眾可能會問的問題，第二題是第一題的延伸，第四題是第三題的延伸，然後針對此講稿5份不同做出100字的回饋，關於内容是否切题，主題内容可以優化改進的地方。請你依照以下格式回答我，問題：1.<question>,2.<question>,3.<question>,4.<question>，回饋：1.<response>,2.<question>,3.<question>,4.<question>,5.<question>\n 請你把内容取代<question>,<response>，請在每個内容中間以空格為間隔。以下是演講逐字稿：";
     private string[] humanproblems = { "香港有哪些適合帶小朋友參觀的景點？", "香港的最佳旅遊季節是什麼時候？", "香港有哪些購物場所推薦？", "香港有哪些必嘗的街頭小吃？", "香港有什麼特別的節慶活動？", "在香港，公共交通工具的運作時間是什麼時候？", "香港有什麼夜生活推薦？", "香港的安全性如何？", "如何從香港國際機場前往市區？"};
 
     private string cleanTrashPrompt = "請針對以下逐字稿，嘗試把不相關的句子移除，把剩下的字句接起來。";
@@ -46,7 +46,7 @@ public class LLM : MonoBehaviour
         // Complete the instruction
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-3.5-turbo",
+            Model = "gpt-4o-2024-05-13",
             Messages = messages,
             Temperature = 0.7f,
             N = 1,
