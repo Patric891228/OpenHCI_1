@@ -65,8 +65,8 @@ public class ResultAnalysis : MonoBehaviour
 
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            // Model = "gpt-4-turbo",
-            Model = "gpt-3.5-turbo",
+            Model = "gpt-4-turbo",
+            // Model = "gpt-3.5-turbo",
             Messages = messages,
             Temperature = 0.7f,
             N = 1,

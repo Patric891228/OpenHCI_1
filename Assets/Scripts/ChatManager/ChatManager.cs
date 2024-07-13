@@ -84,7 +84,7 @@ public class ChatManager : MonoBehaviour
                 {
                     Debug.Log("QA time");
                     sttManager.SetRecordTime(180);
-                    Debug.Log(LLM.PopFirst(LLM.questions));
+                    // Debug.Log(LLM.PopFirst(LLM.questions));
                     SynthesizeAndPlay(LLM.PopFirst(LLM.questions));
                 }
                 break;
